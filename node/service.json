@@ -1,0 +1,96 @@
+{
+  "memory": 256,
+  "ttl": 60,
+  "timeout": 120,
+  "minReplicas": 1,
+  "maxReplicas": 4,
+  "workers": 1,
+  "routes": {
+    "orders": {
+      "path": "/poa/orders",
+      "public": true
+    },
+    "stripe": {
+      "path": "/poa/stripe",
+      "public": true
+    },
+    "checkMissingPreOrders": {
+      "path": "/poa/pre-orders/check-missing",
+      "public": true
+    },
+    "preOrders": {
+      "path": "/poa/pre-orders",
+      "public": true
+    },
+    "fulfillPreOrder": {
+      "path": "/poa/pre-orders/fulfill",
+      "public": true
+    },
+    "cancelPreOrder": {
+      "path": "/poa/pre-orders/cancel",
+      "public": true
+    },
+    "preOrderTotals": {
+      "path": "/poa/pre-orders/totals",
+      "public": true
+    },
+    "preOrderFilters": {
+      "path": "/poa/pre-orders/filters",
+      "public": true
+    },
+    "skus": {
+      "path": "/poa/skus",
+      "public": true
+    },
+    "updateSkus": {
+      "path": "/poa/skus/update",
+      "public": true
+    },
+    "skuFilters": {
+      "path": "/poa/skus/filters",
+      "public": true
+    },
+    "skusPreOrder": {
+      "path": "/poa/skus/pre-order",
+      "public": true
+    },
+    "skusTotals": {
+      "path": "/poa/skus/totals",
+      "public": true
+    },
+    "skuFulfill": {
+      "path": "/poa/skus/fulfill",
+      "public": true
+    },
+    "sellersPercentage": {
+      "path": "/poa/token/sellers-percentage",
+      "public": true
+    },
+    "sellerPercentage": {
+      "path": "/poa/token/seller-percentage",
+      "public": true
+    },
+    "userNotify": {
+      "path": "/poa/token/user-notify",
+      "public": true
+    },
+    "getTransfersInfo": {
+      "path": "/seller/transfers",
+      "public": true
+    },
+    "unhealthyserviceCheck": {
+      "path": "/unhealthyServiceCheck",
+      "public": true
+    },
+    "ping": {
+      "path": "/poa/ping",
+      "public": true
+    }
+  },
+  "events": {
+    "orderCreated": {
+      "sender": "vtex.orders-broadcast",
+      "topics": ["order-status-updated"]
+    }
+  }
+}

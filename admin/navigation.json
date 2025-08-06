@@ -1,0 +1,20 @@
+[
+  {
+    "section": "orders",
+    "subSection": "preorder-processing",
+    "subSectionItems": [
+      {
+        "id": "preorder-processing",
+        "labelId": "admin.navigation.preorder-processing",
+        "path": "/admin/preorder-processing"
+      }
+    ]
+  },
+  {
+    "id": "preorder-processing",
+    "section": "orders",
+    "titleId": "admin.navigation.preorder-processing",
+    "path": "/admin/preorder-processing",
+    "adminVersion": 4
+  }
+]

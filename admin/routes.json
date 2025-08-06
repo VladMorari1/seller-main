@@ -1,0 +1,6 @@
+{
+  "admin.app.preorderProcessing": {
+    "component": "preorderProcessing",
+    "path": "/admin/app/preorder-processing"
+  }
+}

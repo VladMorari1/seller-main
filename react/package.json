@@ -1,0 +1,40 @@
+{
+  "name": "whola-preorder",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "vtex-test-tools test"
+  },
+  "dependencies": {
+    "@types/styled-components": "^5.1.26",
+    "@vtex/css-handles": "^1.1.3",
+    "@vtex/insane": "^2.8.0",
+    "@vtex/styleguide": "^9.146.3",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "axios": "^0.21.1",
+    "date-fns": "^2.29.1",
+    "graphql": "^14.6.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.12.0",
+    "react-apollo": "^3.1.3",
+    "react-dom": "^16.12.0",
+    "react-intl": "^3.12.0",
+    "styled-components": "^5.3.6"
+  },
+  "devDependencies": {
+    "@apollo/react-testing": "^3.1.3",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^16.10.0",
+    "@types/react": "^16.9.31",
+    "@vtex/test-tools": "^3.3.2",
+    "@vtex/tsconfig": "^0.6.0",
+    "typescript": "3.9.7",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.4/public/@types/vtex.render-runtime",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.3/public/@types/vtex.styleguide"
+  },
+  "resolutions": {
+    "graphql": "14.6.0",
+    "expect": "28.1.3",
+    "pretty-format": "28.1.3"
+  }
+}

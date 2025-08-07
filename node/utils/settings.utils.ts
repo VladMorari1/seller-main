@@ -16,9 +16,10 @@ export async function getVtexAppSettings(
   const apps = new Apps(ctx.vtex)
 
   const settings = await apps.getAppSettings(ctx.vtex.userAgent)
-  if(account==='Etikette'||account==='etikette'){
-    return {...settings, stripe_account_id:'acct_1OKDt4CnFxLsVZLw'}
-  }
+  // TODO: delete this code
+  // if(account==='Etikette'||account==='etikette'){
+  //   return {...settings, stripe_account_id:'acct_1OKDt4CnFxLsVZLw'}
+  // }
 
   console.log(account);
   return settings
@@ -31,9 +32,10 @@ export async function getMongoCredentials(
   const { api__accessToken: password } = await getVtexAppSettings(context)
 
   let updatedName=username
-  if(username==='etikette'){
-    updatedName= username.charAt(0).toUpperCase() + username.slice(1);
-  }
+  // TODO: delete this code
+  // if(username==='etikette'){
+  //   updatedName= username.charAt(0).toUpperCase() + username.slice(1);
+  // }
 
   return {
     username:updatedName,

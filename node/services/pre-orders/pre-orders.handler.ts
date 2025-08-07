@@ -103,7 +103,7 @@ export async function fulfillPreOrderItems(
         const matchingItem = body.items.find(
           item =>
             String(item.skuId) === String(product.sellerStockKeepingUnitId) &&
-            config.username === product.sellerId
+            config.username.toLowerCase() === product.sellerId.toLowerCase()
         )
         if (matchingItem) {
           const itemPrice = Number(product.fullPrice) / product.quantity // 10 000
@@ -168,7 +168,7 @@ export async function fulfillPreOrderItems(
 
     // After another stripe charge, the latest_charge param is updated, so we need to update this info in our db also
     const updatedSellerCharge = payment.sellersCharge.reduce((acc, curr) => {
-      if (curr.sellerId === config.username) {
+      if (String(curr.sellerId).toLowerCase() === config.username.toLowerCase()) {
         acc.push({
           sellerId: config.username,
           lastChargeId: preorderStripePayment.latest_charge,
@@ -189,7 +189,7 @@ export async function fulfillPreOrderItems(
       sellersCharge: updatedSellerCharge,
     })
 
-    const settings = await getVtexAppSettings(context,config.username)
+    const settings = await getVtexAppSettings(context)
     const { stripe_account_id } = settings
     const _amount = rechargeSum - rechargeCommission
 

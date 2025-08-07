@@ -209,17 +209,17 @@ export async function onReadyForHandling(context: EventContext<Clients> | Servic
     }
     // [2] Get only our products from order
     const mySellerProducts = payment.products.filter(
-      product => product.sellerId === config.username
+      product => product?.sellerId?.toLowerCase() === config?.username?.toLowerCase()
     )
     // [3] Check if all products are full paid
     // (if there are some preorders we need to save our stripe_account for future transactions)
     const fullPaidProducts: DbProduct[] = mySellerProducts.filter(
       product => Number(product.remainingCharge) === 0
     )
-    const settings = await getVtexAppSettings(context,config.username)
+    const settings = await getVtexAppSettings(context)
     const { stripe_account_id } = settings
     const myLastChargeId = payment.sellersCharge.find(
-      charge => charge.sellerId === config.username
+      charge => charge?.sellerId?.toString().toLowerCase() === config.username.toLowerCase()
     )
 
     // (if all products are full paid, we will charge right now marketplace and transfer money to seller-stripe account)
@@ -228,7 +228,7 @@ export async function onReadyForHandling(context: EventContext<Clients> | Servic
       // which will be used from Marketplace preorders app to process seller items
       await tokensApi
         .addStripeAccount(context, {
-          sellerId: config.username,
+          sellerId: config.username.toLowerCase(),
           sellerStripeAccount: stripe_account_id,
         })
         .catch(e => {
@@ -308,8 +308,8 @@ export async function onReadyForHandling(context: EventContext<Clients> | Servic
     // Save transferInfo in MongoDb
     const saveTansfer = await transfersApi.saveTransferInfo({
       transactionId: transfer?.destination_payment,
-      orderLink: `https://${config.username}.myvtex.com/admin/orders/${orderId}`,
-      sellerId: config.username,
+      orderLink: `https://${config.username.toLowerCase()}.myvtex.com/admin/orders/${orderId}`,
+      sellerId: config.username.toLowerCase(),
       amount: String(sumToCharge),
       currency: payment.paymentDetails?.currency || 'aud',
       orderId: _orderId,
@@ -327,7 +327,7 @@ export async function onReadyForHandling(context: EventContext<Clients> | Servic
     // Save transferId in seller do be able to cancel items and return money
     const saveTransferId = await paymentApi.saveSellerStripeTransferId(context, {
       transferId: transfer.id,
-      sellerId: config.username,
+      sellerId: config.username.toLowerCase(),
       orderId: _orderId,
     }).catch((e)=>{
       return e?.response?.data
